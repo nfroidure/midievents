@@ -1,5 +1,5 @@
 var assert=require('assert')
-	, MIDIEvents = require('./../src/MIDIEvents.js');
+	, MIDIEvents = require('../src/MIDIEvents.js');
 
 // Tests
 describe('Reading well formed MIDI events', function(){
