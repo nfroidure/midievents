@@ -1,5 +1,4 @@
-MIDIEvents [![Build Status](https://travis-ci.org/nfroidure/MIDIEvents.png?branch=master)](https://travis-ci.org/nfroidure/MIDIEvents)
-============
+# MIDIEvents [![Build Status](https://travis-ci.org/nfroidure/MIDIEvents.png?branch=master)](https://travis-ci.org/nfroidure/MIDIEvents)
 
 MIDIEvents is a helper intended to help working with MIDI events. MIDIEvents is
  the base project for MIDIFile and MIDIPlayer.
@@ -12,22 +11,22 @@ MIDIEvents can be used either in modern browsers
 npm install midievents
 ```
 
-What it does
--------------
+## Browser support
+[![Build Status](https://ci.testling.com/nfroidure/MIDIEvents.png)](https://ci.testling.com/nfroidure/MIDIEvents)
+
+## What it does
 * Decode midi events
 * Check midi events (using strictMode)
 *	Calculate needed buffer to encode midi events
 *	Encode midi events
 
-What it doesn't do
--------------
+## What it doesn't do
 *	Reading MIDI files. It's the role of the
  [MIDIFile project](https://github.com/nfroidure/MIDIFile).
 * Playing MIDI files. It's the role of the
  [MIDIPlayer project](https://github.com/nfroidure/MIDIPlayer).
 
-Usage
--------------
+## Usage
 ```js
 // Your variable with an ArrayBuffer instance containing your MIDI events
 var anyBuffer;
@@ -54,8 +53,7 @@ MIDIEvents.writeToTrack(events, destination);
 
 ```
 
-Contributing / Testing
--------------
+## Contributing / Testing
 Install them and run the following command :
 
 ```bash
@@ -64,12 +62,10 @@ su npm install grunt-cli -g
 grunt test
 ```
 
-Contributing
--------------
+## Contributing
 * Feel free to PR
 * If you find MIDI events the library can't read, create a test an do a pull
  request. I'll work on it asap.
 
-License
--------
+## License
 Copyright Nicolas Froidure 2013. MIT licence.
