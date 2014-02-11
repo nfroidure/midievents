@@ -12,7 +12,10 @@
     "node": "*"
   },
   "devDependencies": {
-    "mocha": "~1.7.0",
+    "mocha": "~1.17.1",
+    "mocha-lcov-reporter": "0.0.1",
+    "coveralls": "~2.7.1",
+    "istanbul": "~0.2.4",
     "grunt": "~0.4.2",
     "browserify": "~2.36.1",
     "grunt-browserify": "~1.2.12",
@@ -22,7 +25,9 @@
     "matchdep": "~0.3.0"
   },
   "scripts": {
-    "test": "mocha tests/*.mocha.js"
+    "test": "./node_modules/mocha/bin/mocha tests/*.mocha.js",
+    "coveralls": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- tests/*.mocha.js -R spec -t 5000 && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
+    "cover": "istanbul cover ./node_modules/mocha/bin/_mocha --report html -- tests/*.mocha.js -R spec -t 5000"
   },
   "keywords": [
     "sound",
