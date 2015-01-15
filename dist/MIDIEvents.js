@@ -215,11 +215,14 @@ MIDIEvents.createParser=function(stream, startAt, strictMode) {
 							}
 							return event;
 							break;
-						 // Not implemented
 						case MIDIEvents.EVENT_META_TIME_SIGNATURE:
 							if(strictMode&&4!==event.length)
 								throw new Error(stream.pos()+' Bad metaevent length.');
 							event.data=stream.readBytes(event.length);
+							event.param1=event.data[0];
+							event.param2=event.data[1];
+							event.param3=event.data[2];
+							event.param4=event.data[3];
 							return event;
 							break;
 						case MIDIEvents.EVENT_META_SEQUENCER_SPECIFIC:

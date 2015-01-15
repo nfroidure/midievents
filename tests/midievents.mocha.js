@@ -105,6 +105,22 @@ describe('Reading well formed MIDI events', function(){
 		assert.equal(events[13].delta,0x00);
 	});
 
+	it("Should parse time signature", function() {
+		var event, events=[], parser;
+	  parser=new MIDIEvents.createParser(
+		  new DataView(new Uint8Array([0x00, 0xFF, 0x58, 0x04, 0x04, 0x02, 0x08, 0x08]).buffer),
+		    0, false);
+	  event=parser.next();
+
+		assert.equal(event.type,MIDIEvents.EVENT_META);
+		assert.equal(event.subtype,MIDIEvents.EVENT_META_TIME_SIGNATURE);
+		assert.equal(event.index,0);
+		assert.equal(event.param1,4);
+		assert.equal(event.param2,2);
+		assert.equal(event.param3,8);
+		assert.equal(event.param4,8);
+	});
+
   // TO DO : report MIDIEvents specific MIDIFile tests here
 
 });
