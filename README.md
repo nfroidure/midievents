@@ -1,5 +1,5 @@
 # MIDIEvents
-> MIDIEvents is a helper intended to help working with MIDI events. MIDIEvents is
+> MIDIEvents is a module intended to help working with MIDI events. MIDIEvents is
  the base project for MIDIFile and MIDIPlayer.
 
 [![NPM version](https://badge.fury.io/js/midievents.png)](https://npmjs.org/package/midievents) [![Build status](https://secure.travis-ci.org/nfroidure/MIDIEvents.png)](https://travis-ci.org/nfroidure/MIDIEvents) [![Dependency Status](https://david-dm.org/nfroidure/midievents.png)](https://david-dm.org/nfroidure/midievents) [![devDependency Status](https://david-dm.org/nfroidure/midievents/dev-status.png)](https://david-dm.org/nfroidure/midievents#info=devDependencies) [![Coverage Status](https://coveralls.io/repos/nfroidure/MIDIEvents/badge.png?branch=master)](https://coveralls.io/r/nfroidure/MIDIEvents?branch=master)
@@ -43,7 +43,7 @@ do {
   event=parser.next();
 } while(event);
 
-// Check bufffer size before encodng
+// Check bufffer size before encoding
 if(anyBuffer.length >= MIDIEvents.getRequiredBufferLength(events)) {
   console.log('ok');
 }

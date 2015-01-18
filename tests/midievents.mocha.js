@@ -4,13 +4,17 @@ var assert=require('assert')
 // Tests
 describe('Reading well formed MIDI events', function(){
 
+  var trackContent = new Uint8Array([
+    0, 255, 88, 4, 4, 2, 24, 8, 0, 255, 81, 3, 7,
+    161, 32, 0, 192, 5, 0, 193, 46, 0, 194, 70, 0, 146, 48, 96, 0, 60, 96,
+    96, 145, 67, 64, 96, 144, 76, 32, 129, 64, 130, 48, 64, 0, 60, 64, 0,
+    129, 67, 64, 0, 128, 76, 64, 0, 255, 47, 0
+  ]);
+
 	it("Should work", function() {
 		var event, events=[], parser;
 	  parser=new MIDIEvents.createParser(
-		  new DataView(new Uint8Array([0, 255, 88, 4, 4, 2, 24, 8, 0, 255, 81, 3, 7,
-		      161, 32, 0, 192, 5, 0, 193, 46, 0, 194, 70, 0, 146, 48, 96, 0, 60, 96,
-		      96, 145, 67, 64, 96, 144, 76, 32, 129, 64, 130, 48, 64, 0, 60, 64, 0,
-		      129, 67, 64, 0, 128, 76, 64, 0, 255, 47, 0]).buffer),
+		  new DataView(trackContent.buffer),
 		    0, false);
 	  event=parser.next();
 	  do {
@@ -105,7 +109,7 @@ describe('Reading well formed MIDI events', function(){
 		assert.equal(events[13].delta,0x00);
 	});
 
-	it("Should parse time signature", function() {
+	  it("Should parse time signature", function() {
 		var event, events=[], parser;
 	  parser=new MIDIEvents.createParser(
 		  new DataView(new Uint8Array([0x00, 0xFF, 0x58, 0x04, 0x04, 0x02, 0x08, 0x08]).buffer),
@@ -121,6 +125,57 @@ describe('Reading well formed MIDI events', function(){
 		assert.equal(event.param4,8);
 	});
 
-  // TO DO : report MIDIEvents specific MIDIFile tests here
+	describe("For events write", function() {
+    var events =[{
+      "index":"0x0","delta":0,"type":255,"subtype":88,"length":4,"data":[4,2,24,8],"param1":4,"param2":2,"param3":24,"param4":8
+    },{
+      "index":"0x8","delta":0,"type":255,"subtype":81,"length":3,"tempo":500000,"tempoBPM":120
+    },{
+      "index":"0xf","delta":0,"type":8,"subtype":12,"channel":0,"param1":5
+    },{
+      "index":"0x12","delta":0,"type":8,"subtype":12,"channel":1,"param1":46
+    },{
+      "index":"0x15","delta":0,"type":8,"subtype":12,"channel":2,"param1":70
+    },{
+      "index":"0x18","delta":0,"type":8,"subtype":9,"channel":2,"param1":48,"param2":96
+    },{
+      "index":"0x1c","delta":0,"type":8,"subtype":9,"channel":2,"param1":60,"param2":96
+    },{
+      "index":"0x1f","delta":96,"type":8,"subtype":9,"channel":1,"param1":67,"param2":64
+    },{
+      "index":"0x23","delta":96,"type":8,"subtype":9,"channel":0,"param1":76,"param2":32
+    },{
+      "index":"0x27","delta":192,"type":8,"subtype":8,"channel":2,"param1":48,"param2":64
+    },{
+      "index":"0x2c","delta":0,"type":8,"subtype":8,"channel":2,"param1":60,"param2":64
+    },{
+      "index":"0x2f","delta":0,"type":8,"subtype":8,"channel":1,"param1":67,"param2":64
+    },{
+      "index":"0x33","delta":0,"type":8,"subtype":8,"channel":0,"param1":76,"param2":64
+    },{
+      "index":"0x37","delta":0,"type":255,"subtype":47,"length":0
+    }];
+
+    it("Should write midi events well", function() {
+      assert.equal(MIDIEvents.getRequiredBufferLength(events), 61);
+    });
+
+    it("Should write midi events well", function() {
+      var newTrackContent = new Uint8Array(61);
+      var trackContent = new Uint8Array([
+        0, 255, 88, 4, 4, 2, 24, 8, 0, 255, 81, 3, 7, 161, 32, 0, 192, 5, 0,
+        193, 46, 0, 194, 70, 0, 146, 48, 96, 0, 146, 60, 96, 96, 145, 67, 64,
+        96, 144, 76, 32, 129, 64, 130, 48, 64, 0, 130, 60, 64, 0, 129, 67, 64,
+        0, 128, 76, 64, 0, 255, 47, 0
+      ]);
+      MIDIEvents.writeToTrack(events, newTrackContent);
+      var arr = [];
+      for(var i = 0; i < 61; i++) {
+        arr[i] = newTrackContent[i];
+        assert.equal(newTrackContent[i], trackContent[i], 'Index "' + i + '" index values differs (' + newTrackContent[i] + ',' + trackContent[i] + ').')
+      }
+    });
+
+  });
 
 });
