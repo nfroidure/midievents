@@ -1,6 +1,6 @@
 {
   "name": "midievents",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Decode/encode MIDI events.",
   "main": "./src/MIDIEvents",
   "author": "Nicolas Froidure",
