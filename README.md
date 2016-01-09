@@ -21,7 +21,7 @@ npm install midievents
 ```
 
 ## Browser support
-[![Build Status](https://ci.testling.com/nfroidure/MIDIEvents.svg)](https://ci.testling.com/nfroidure/MIDIEvents)
+[![Build Status](https://ci.testling.com/nfroidure/midievents.svg)](https://ci.testling.com/nfroidure/MIDIEvents)
 
 ## What it does
 * Decode MIDI events
