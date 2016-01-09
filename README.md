@@ -1,8 +1,16 @@
 # MIDIEvents
-> MIDIEvents is a module intended to help working with MIDI events. MIDIEvents is
- the base project for MIDIFile and MIDIPlayer.
+> MIDIEvents is a module intended to help working with MIDI events.
 
-[![NPM version](https://badge.fury.io/js/midievents.png)](https://npmjs.org/package/midievents) [![Build status](https://secure.travis-ci.org/nfroidure/MIDIEvents.png)](https://travis-ci.org/nfroidure/MIDIEvents) [![Dependency Status](https://david-dm.org/nfroidure/midievents.png)](https://david-dm.org/nfroidure/midievents) [![devDependency Status](https://david-dm.org/nfroidure/midievents/dev-status.png)](https://david-dm.org/nfroidure/midievents#info=devDependencies) [![Coverage Status](https://coveralls.io/repos/nfroidure/MIDIEvents/badge.png?branch=master)](https://coveralls.io/r/nfroidure/MIDIEvents?branch=master)
+MIDIEvents is the base project for [MIDIFile](https://github.com/nfroidure/MIDIFile)
+ and [MIDIPlayer](https://github.com/nfroidure/MIDIPlayer). You can also check
+ this [Karaoke Player](http://karaoke.insertafter.com) built on top of those
+ libraries.
+
+[![NPM version](https://badge.fury.io/js/midievents.svg)](https://npmjs.org/package/midievents)
+ [![Build status](https://secure.travis-ci.org/nfroidure/MIDIEvents.svg)](https://travis-ci.org/nfroidure/MIDIEvents)
+ [![Dependency Status](https://david-dm.org/nfroidure/midievents.svg)](https://david-dm.org/nfroidure/midievents)
+ [![devDependency Status](https://david-dm.org/nfroidure/midievents/dev-status.svg)](https://david-dm.org/nfroidure/midievents#info=devDependencies)
+ [![Coverage Status](https://coveralls.io/repos/nfroidure/MIDIEvents/badge.svg?branch=master)](https://coveralls.io/r/nfroidure/MIDIEvents?branch=master)
 
 MIDIEvents can be used either in modern browsers
  ([pick the last bundle](https://github.com/nfroidure/MIDIEvents/blob/master/dist/MIDIEvents.js))
@@ -13,13 +21,13 @@ npm install midievents
 ```
 
 ## Browser support
-[![Build Status](https://ci.testling.com/nfroidure/MIDIEvents.png)](https://ci.testling.com/nfroidure/MIDIEvents)
+[![Build Status](https://ci.testling.com/nfroidure/MIDIEvents.svg)](https://ci.testling.com/nfroidure/MIDIEvents)
 
 ## What it does
-* Decode midi events
-* Check midi events (using strictMode)
-*	Calculate needed buffer to encode midi events
-*	Encode midi events
+* Decode MIDI events
+* Check MIDI events (using strictMode)
+*	Calculate needed buffer to encode MIDI events
+*	Encode MIDI events
 
 ## What it doesn't do
 *	Reading MIDI files. It's the role of the
@@ -32,15 +40,14 @@ npm install midievents
 // Your variable with an ArrayBuffer instance containing your MIDI events
 var anyBuffer;
 
-// MIDI events parser
-var event, events=[], parser;
-parser=new MIDIEvents.createParser(
-  new DataView(anyBuffer),
-    0, false);
-event=parser.next();
+// Parse MIDI events
+var events = [];
+var parser = new MIDIEvents.createParser(new DataView(anyBuffer), 0, false);
+var event = parser.next();
+
 do {
   events.push(event);
-  event=parser.next();
+  event = parser.next();
 } while(event);
 
 // Check bufffer size before encoding
@@ -67,6 +74,7 @@ grunt test
 * Feel free to PR
 * If you find MIDI events the library can't read, create a test an do a pull
  request. I'll work on it asap.
+* Run `npm run` to get a list of useful development commands.
 
 ## License
-Copyright Nicolas Froidure 2013. MIT licence.
+Copyright Nicolas Froidure. MIT licence.

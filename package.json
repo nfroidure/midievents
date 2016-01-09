@@ -12,22 +12,22 @@
     "node": "*"
   },
   "devDependencies": {
-    "mocha": "~2.1.0",
-    "mocha-lcov-reporter": "0.0.1",
-    "coveralls": "~2.11.2",
-    "istanbul": "~0.3.5",
-    "grunt": "~0.4.5",
     "browserify": "~8.1.1",
-    "grunt-browserify": "~3.3.0",
-    "grunt-contrib-clean": "~0.6.0",
-    "grunt-contrib-watch": "~0.6.1",
-    "grunt-mocha-test": "~0.12.6",
-    "matchdep": "~0.3.0"
+    "coveralls": "~2.11.2",
+    "eslint": "^1.10.3",
+    "eslint-config-simplifield": "^1.2.0",
+    "istanbul": "~0.3.5",
+    "matchdep": "~0.3.0",
+    "mocha": "~2.1.0",
+    "mocha-lcov-reporter": "0.0.1"
   },
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha tests/*.mocha.js",
-    "coveralls": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- tests/*.mocha.js -R spec -t 5000 && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
-    "cover": "istanbul cover ./node_modules/mocha/bin/_mocha --report html -- tests/*.mocha.js -R spec -t 5000"
+    "test": "mocha tests/*.mocha.js",
+    "coveralls": "istanbul cover _mocha --report lcovonly -- tests/*.mocha.js -R spec -t 5000 && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage",
+    "cover": "istanbul cover _mocha --report html -- tests/*.mocha.js -R spec -t 5000",
+    "lint": "eslint src/*.js tests/*.js",
+    "preversion": "npm test && npm run lint",
+    "build": "browserify -s MIDIEvents src/MIDIEvents.js > dist/MIDIEvents.js"
   },
   "keywords": [
     "sound",
@@ -41,22 +41,15 @@
   "testling": {
     "harness": "mocha",
     "files": "tests/*.mocha.js",
-    "browsers": {
-      "safari": [
-        5.1
-      ],
-      "opera": [
-        12
-      ],
-      "ie": [
-        10
-      ],
-      "firefox": [
-        16
-      ],
-      "chrome": [
-        20
-      ]
-    }
+    "browsers": [
+      "ie/6..latest",
+      "chrome/22..latest",
+      "firefox/16..latest",
+      "safari/latest",
+      "opera/11.0..latest",
+      "iphone/6",
+      "ipad/6",
+      "android-browser/latest"
+    ]
   }
 }
