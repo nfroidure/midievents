@@ -17,7 +17,7 @@ MIDIEvents can be used either in modern browsers
  or with NodeJS by installing the following
  [NPM module](https://npmjs.org/package/midievents) :
 ```bash
-npm install midievents
+npm install midievents --save
 ```
 
 ## Browser support
