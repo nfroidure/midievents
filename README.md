@@ -26,9 +26,9 @@
 
 ## What it doesn't do
 *	Reading MIDI files. It's the role of the
- [MIDIFile project](https://github.com/nfroidure/MIDIFile).
+ [MIDIFile project](https://github.com/nfroidure/midifile).
 * Playing MIDI files. It's the role of the
- [MIDIPlayer project](https://github.com/nfroidure/MIDIPlayer).
+ [MIDIPlayer project](https://github.com/nfroidure/midiplayer).
 
 ## Usage
 ```js
