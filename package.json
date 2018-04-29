@@ -2,16 +2,16 @@
   "name": "midievents",
   "version": "2.0.0",
   "description": "Decode/encode MIDI events.",
-  "main": "./src/MIDIEvents",
+  "main": "src/midievents",
   "author": "Nicolas Froidure",
   "repository": {
     "type": "git",
-    "url": "http://github.com/nfroidure/MIDIEvents.git"
+    "url": "http://github.com/nfroidure/midievents.git"
   },
   "metapak": {
     "data": {
-      "files": "src/*.js tests/*.mocha.js",
-      "testsFiles": "tests/*.mocha.js"
+      "files": "src/*.js",
+      "testsFiles": "src/*.mocha.js"
     },
     "configs": [
       "readme",
@@ -42,13 +42,13 @@
   "scripts": {
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "cli": "env NODE_ENV=${NODE_ENV:-cli}",
-    "cover": "istanbul cover _mocha --report html -- tests/*.mocha.js -R spec -t 5000",
-    "coveralls": "istanbul cover _mocha --report lcovonly -- tests/*.mocha.js -R spec -t 5000 && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage",
+    "cover": "istanbul cover _mocha --report html -- src/*.mocha.js -R spec -t 5000",
+    "coveralls": "istanbul cover _mocha --report lcovonly -- src/*.mocha.js -R spec -t 5000 && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage",
     "cz": "env NODE_ENV=${NODE_ENV:-cli} git cz",
-    "lint": "eslint src/*.js tests/*.mocha.js",
+    "lint": "eslint src/*.js",
     "metapak": "metapak",
-    "mocha": "mocha tests/*.mocha.js",
-    "prettier": "prettier --write src/*.js tests/*.mocha.js",
+    "mocha": "mocha src/*.mocha.js",
+    "prettier": "prettier --write src/*.js",
     "preversion": "npm t && npm run lint && npm run metapak -s",
     "test": "npm run mocha",
     "version": "npm run changelog && git add CHANGELOG.md"

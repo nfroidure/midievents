@@ -1,7 +1,7 @@
 'use strict';
 
 var assert = require('assert');
-var MIDIEvents = require('../src/MIDIEvents.js');
+var MIDIEvents = require('../src/midievents');
 
 // Tests
 describe('Reading well formed MIDI events', function() {
