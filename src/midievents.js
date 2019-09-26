@@ -76,11 +76,6 @@ MIDIEvents.createParser = function midiEventsCreateParser(
         this.position = this.position + 2;
         return v;
       },
-      readUint32: function() {
-        var v = this.buffer.getUint16(this.position);
-        this.position = this.position + 2;
-        return v;
-      },
       readVarInt: function() {
         var v = 0;
         var i = 0;
