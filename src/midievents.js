@@ -68,13 +68,11 @@ MIDIEvents.createParser = function midiEventsCreateParser(
     stream = {
       position: startAt || 0,
       buffer: stream,
+      readInt8: function() {
+        return this.buffer.getInt8(this.position++);
+      },
       readUint8: function() {
         return this.buffer.getUint8(this.position++);
-      },
-      readUint16: function() {
-        var v = this.buffer.getUint16(this.position);
-        this.position = this.position + 2;
-        return v;
       },
       readVarInt: function() {
         var v = 0;
@@ -233,7 +231,7 @@ MIDIEvents.createParser = function midiEventsCreateParser(
               if (strictMode && 2 !== event.length) {
                 throw new Error(stream.pos() + ' Bad metaevent length.');
               }
-              event.key = stream.readUint8();
+              event.key = stream.readInt8();
               if (strictMode && (-7 > event.key || 7 < event.key)) {
                 throw new Error(stream.pos() + ' Bad metaevent length.');
               }
